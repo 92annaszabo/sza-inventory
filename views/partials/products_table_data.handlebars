@@ -1,0 +1,11 @@
+{{#each items}}
+<tr>
+    <td>{{this.id}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.category}}</td>
+    <td>
+        <button class="btn btn-primary" data-id={{this.id}}>Szerkesztés</button>
+        <button class="btn btn-secondary" data-id={{this.id}}>Törlés</button>
+    </td>
+</tr>
+{{/each}}
