@@ -1,8 +1,14 @@
-const express = require('express')
-const handlebars = require('express-handlebars')
+const express = require('express');
+const handlebars = require('express-handlebars');
 const sqlite3 = require('sqlite3').verbose();
-const app = express()
+const app = express();
 const port = process.env.port || 3000
+const db = new sqlite3.Database('inventory.db');
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.engine('handlebars', handlebars({
     extname: 'handlebars',
@@ -18,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 
 app.get('/products', (req, res) => {
-    const db = new sqlite3.Database('inventory.db')
+    
     db.serialize(function () {
         db.all("SELECT rowId as id, name, category from products", function (err, results) {
             if (err != null) {
@@ -32,6 +38,22 @@ app.get('/products', (req, res) => {
 
         });
     });
+});
+
+app.post('/addproduct', (req,res) => {
+    const {newproduct,newgroup} = req.body;
+    db.serialize(function () {    
+        db.run("INSERT INTO products VALUES (?, ?)",[newproduct,newgroup]);
+        db.all("SELECT rowId as id, name, category from products", function (err, results) {
+            if (err != null) {
+                console.error(err.toString())
+            }
+            console.log(results);
+        });
+    });
+
+    res.redirect('products');
+
 })
 
 app.get('/storage', (req, res) => {
