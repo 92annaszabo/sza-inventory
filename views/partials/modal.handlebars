@@ -17,8 +17,18 @@
         <div>Új termék:</div>
         <div><input type="text" name="newproduct"></div>
         <div class="mt-3">Csoport:</div>
-        <div><input type="text" name="newgroup"></div>
-        <input class="btn btn-primary mt-3"type="submit" value="Regisztrálás">
+        <div>
+          <label for="groups" >Csoport:</label>
+
+          <select id="groups" name="newgroup">
+            <option value="Fűtéstechnika">Fűtéstechnika</option>
+            <option value="Számítástechnika">Számítástechnika</option>
+            <option value="Konyhatechnika">Konyhatechnika</option>
+            <option value="Árnyékolástechnika">Árnyékolástechnika</option>
+          </select>
+ 
+        </div>
+          <input class="btn btn-primary mt-3"type="submit" value="Regisztrálás">
         </form>
       </div>
     </div>
