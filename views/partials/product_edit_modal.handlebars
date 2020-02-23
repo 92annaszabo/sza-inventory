@@ -1,0 +1,75 @@
+<!-- Button to Open the Modal -->
+<button type="button" data-id="_{{this.id}}" realCat={{this.category}} class="btn btn-primary edit-modal-opener" data-toggle="modal" data-target="#product_{{this.id}}">
+  Szerkesztés
+</button>
+
+<!-- The Modal -->
+<div class="modal fade edit-modal" id="product_{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title ">{{this.name}} szerkesztése</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <form method="POST" action="/editproduct">
+        <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group text-left d-none">
+                    <label class="head-label ">ID: </label>
+                    <input class="form-control" type="text" name="product_id" value="{{this.id}}"> 
+                </div>
+                <div class="form-group text-left">
+                    <label class="head-label ">Termék neve: </label>
+                    <input class="form-control" type="text" name="newname" value="{{this.name}}"> 
+                </div>
+                <div class="form-group text-left">
+                    <label for="groups" >Csoport:</label>
+                    <select class="form-control" id="groups" name="newcategory"> Válassz csoportot!
+                         <option disabled selected value="">Válassz csoportot</option>
+                        <option class='category-option' realCat={{this.category}} value="Fűtéstechnika">Fűtéstechnika</option>
+                        <option class='category-option' realCat={{this.category}} value="Számítástechnika">Számítástechnika</option>
+                        <option class='category-option' realCat={{this.category}} value="Konyhatechnika">Konyhatechnika</option>
+                        <option class='category-option' realCat={{this.category}} value="Árnyékolástechnika">Árnyékolástechnika</option>
+                    </select>
+                </div>
+                <div class="form-group text-left">
+                    <label class="head-label ">Termékleírás: </label>
+                    <textarea class="form-control" rows="5" id="comment" name="newProductDesc">{{this.description}}</textarea> 
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
+            <input type="submit" class="btn btn-success" value='Mentés'>
+
+            </div>
+        </form>
+  
+      </div>
+    </div>
+  </div>
+
+  {{!-- <script>
+      selectCategory()
+      function selectCategory(){
+        const modal = document.getElementsByClassName('edit-modal')
+        let count = 0
+      
+        const currentId = modal[count].id
+        console.log(currentId)
+        const category = document.getElementsByClassName('.category-option');
+         console.log(category)
+        for(let i = 0; i < category.length; i++){
+            console.log(category[0])
+            if(category[i].innerHTML == category[i].realCat){
+                category[i].setAttribute('selected')
+            }
+        }
+
+      }
+  </script> --}}
+

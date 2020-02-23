@@ -1,4 +1,4 @@
-<table class=" table table-hover table-border text-right">
+<table id='productTable'class=" table table-hover table-border text-right">
     <thead>
         <th>ID</th>
         <th>Megnevezés</th>
@@ -15,3 +15,12 @@
     {{!-- <button class="btn btn-success">Új termék</button> --}}
     {{> modal}}
 </div>
+
+<script>
+    $(document).ready(function() {
+    $('#productTable').DataTable();
+});
+
+//$('#productTable').dataTable({searching: false, info:false; paging: true});
+
+</script>

@@ -4,8 +4,9 @@
     <td>{{this.name}}</td>
     <td>{{this.category}}</td>
     <td>
-        <button class="btn btn-primary" data-id={{this.id}}>Szerkesztés</button>
-        <button class="btn btn-secondary" data-id={{this.id}}>Törlés</button>
+        {{!-- <button class="btn btn-primary" data-id={{this.id}}>Szerkesztés</button> --}}
+        {{> product_edit_modal}}
+        {{> product_delete_modal}}
     </td>
 </tr>
 {{/each}}
